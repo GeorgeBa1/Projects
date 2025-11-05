@@ -1,7 +1,0 @@
-pandas
-numpy
-scikit-learn
-kafka-python
-pyspark
-requests
-matplotlib
