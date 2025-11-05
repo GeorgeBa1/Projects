@@ -1,0 +1,16 @@
+{
+    "mae": 0.30207329788498627,
+    "rmse": 0.3400629376348384,
+    "feature_importances": {
+        "Wind Speed": 0.0023255642441590736,
+        "Temperature": 0.11307772701124497,
+        "Capacity": 0.5762630997540819,
+        "Hour of Day": 0.29547756709279027,
+        "Cloudiness": 0.012856041897723838
+    },
+    "data_points": {
+        "testing_data_count": 52624,
+        "training_data_count": 209830
+    },
+    "number_of_features": 5
+}
