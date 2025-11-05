@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Supervising</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 text-white">
+
+    <!-- Sidebar (Vertical Navigation) -->
+    <nav class="h-screen w-64 bg-purple-900 bg-opacity-90 text-white fixed top-0 left-0 flex flex-col py-6 px-4 shadow-lg">
+        <div class="mb-6 px-4">
+            <span class="text-3xl font-bold">Nemertes</span>
+        </div>
+        <div class="w-full flex flex-col space-y-4">
+            <a href="prof.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="theses.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-book"></i> Theses
+            </a>
+            <a href="stats.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-pie"></i> Stats
+            </a>
+            <a href="students.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-user-graduate"></i> Students
+            </a>
+            <a href="invitations.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-envelope"></i> Invitations
+            </a>
+            <a href="presentation_feed.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-bullhorn"></i> Announcements
+            </a>
+        </div>
+        <div class="mt-auto w-full px-4">
+            <a href="./php/logout.php" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 w-full rounded-lg transition flex items-center">
+                <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-yellow-700">Invitations</h1>
+        </header>
+    
+        <!-- Invitations List -->
+        <section id="invitationsList" class="space-y-4">
+            <!-- List items will be dynamically populated here -->
+        </section>
+    </main>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/invitations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

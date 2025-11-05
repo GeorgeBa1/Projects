@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Supervising</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 text-white flex overflow-hidden">
+
+    <!-- Sidebar (Vertical Navigation) -->
+    <nav class="h-screen w-64 bg-purple-900 bg-opacity-90 text-white fixed top-0 left-0 flex flex-col py-6 px-4 shadow-lg">
+        <div class="mb-6 px-4">
+            <span class="text-3xl font-bold">Nemertes</span>
+        </div>
+        <div class="w-full flex flex-col space-y-4">
+            <a href="prof.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="theses.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-book"></i> Theses
+            </a>
+            <a href="stats.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-pie"></i> Stats
+            </a>
+            <a href="students.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-user-graduate"></i> Students
+            </a>
+            <a href="invitations.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-envelope"></i> Invitations
+            </a>
+            <a href="presentation_feed.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-bullhorn"></i> Announcements
+            </a>
+        </div>
+        <div class="mt-auto w-full px-4">
+            <a href="./php/logout.php" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 w-full rounded-lg transition flex items-center">
+                <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <main class="ml-64 flex-1 p-8">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-purple-400">Supervising</h1>
+            <p class="text-lg font-semibold text-gray-300">Detailed view of completed and ongoing theses</p>
+        </header>
+        
+        <!-- Filters -->
+        <div class="flex items-center space-x-4 mb-6">
+            <select id="statusFilter" class="p-2 border border-gray-600 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
+                <option value="">All Statuses</option>
+                <option value="under_assignment">Under Assignment</option>
+                <option value="active">Active</option>
+                <option value="under_review">Under Review</option>
+                <option value="completed">Completed</option>
+            </select>
+            <select id="roleFilter" class="p-2 border border-gray-600 bg-gray-800 text-white rounded hover:bg-gray-700 transition">
+                <option value="">All Roles</option>
+                <option value="supervisor1">Supervisor 1</option>
+                <option value="committee">Committee Member</option>
+            </select>
+    
+            <!-- Export Buttons -->
+            <div class="flex space-x-2" id="exportButtons">
+                <button id="exportToCSV" class="flex items-center space-x-2 bg-purple-700 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105">
+                    <i class="fa-solid fa-file-csv"></i>
+                    <span>Export CSV</span>
+                </button>
+                <button id="exportToJSON" class="flex items-center space-x-2 bg-purple-700 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105">
+                    <i class="fa-solid fa-file-export"></i>
+                    <span>Export JSON</span>
+                </button>
+                <button id="cTheses" class="flex items-center space-x-2 bg-purple-700 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-lg shadow transition-transform transform hover:scale-105">
+                    Cancelled Theses
+                </button>
+            </div>
+            
+        </div>
+    
+        <!-- Theses List -->
+        <div id="thesisList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        
+        <!-- Thesis Details Modal -->
+        <div id="thesisModal2" class="fixed inset-0 bg-gray-900 bg-opacity-90 backdrop-blur-lg flex items-center justify-center text-sm hidden">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg p-6 rounded-lg shadow-xl w-11/12 md:w-2/3 lg:w-1/2 max-h-[60vh] overflow-y-auto">
+                <button id="closeModalBtn" class="float-right text-gray-500 hover:text-purple-500 transition-transform transform hover:scale-150">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <h2 id="modalTitle" class="text-3xl font-bold text-purple-400 mb-4"></h2>
+                <div id="modalContent" class="space-y-4 text-gray-200"></div>
+            </div>
+        </div>
+    
+        <!-- Grading Modal -->
+        <div id="gradingModal" class="fixed inset-0 hidden bg-gray-900 bg-opacity-90 flex items-center justify-center">
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg p-8 rounded-lg shadow-lg w-96">
+                <h2 class="text-2xl font-bold text-purple-400 mb-6">Grade Thesis</h2>
+                <div class="flex flex-col space-y-4">
+                    <label class="text-gray-300">Quality of Thesis (60%)</label>
+                    <input id="criteria1" type="number" min="0" max="10" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" placeholder="0-10">
+        
+                    <label class="text-gray-300">Completion Time (15%)</label>
+                    <input id="criteria2" type="number" min="0" max="10" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" placeholder="0-10">
+        
+                    <label class="text-gray-300">Quality of Text (15%)</label>
+                    <input id="criteria3" type="number" min="0" max="10" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" placeholder="0-10">
+        
+                    <label class="text-gray-300">Overall Presentation (10%)</label>
+                    <input id="criteria4" type="number" min="0" max="10" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" placeholder="0-10">
+                </div>
+                <div class="flex justify-end space-x-4 mt-6">
+                    <button onclick="saveGrades()" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-6 rounded">Save</button>
+                    <button onclick="closeGradingModal()" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-6 rounded">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    
+
+    <!-- JavaScript for any additional functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="./js/students.js"></script>
+</body>
+</html>

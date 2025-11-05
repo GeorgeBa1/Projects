@@ -1,0 +1,97 @@
+[
+  {
+    "user_id": 1,
+    "password": "secure_pass1",
+    "role": "prof",
+    "name": "Michael",
+    "surname": "Johnson",
+    "email": "michael.johnson@example.com",
+    "phone": "2101234567",
+    "address": "New York, USA"
+  },
+  {
+    "user_id": 2,
+    "password": "teacher_passA",
+    "role": "prof",
+    "name": "Sophia",
+    "surname": "Anderson",
+    "email": "sophia.anderson@university.edu",
+    "phone": "9876543210",
+    "address": "Boston, USA",
+    "mobile": "1234567890"
+  },
+  {
+    "user_id": 3,
+    "password": "student_passX",
+    "role": "student",
+    "name": "Liam",
+    "surname": "Brown",
+    "email": "liam.brown@student.edu",
+    "phone": "2654321098",
+    "address": "Los Angeles, USA",
+    "mobile": "1234567890"
+  },
+  {
+    "user_id": 4,
+    "password": "student_passY",
+    "role": "student",
+    "name": "Olivia",
+    "surname": "Martinez",
+    "email": "olivia.martinez@student.edu",
+    "phone": "2654321000",
+    "address": "Chicago, USA",
+    "mobile": "987654321"
+  },
+  {
+    "user_id": 5,
+    "password": "staff_secure1",
+    "role": "student",
+    "name": "William",
+    "surname": "Taylor",
+    "email": "william.taylor@company.com",
+    "phone": "2123456789",
+    "address": "Seattle, USA"
+  },
+  {
+    "user_id": 7,
+    "password": "faculty1234",
+    "role": "prof",
+    "name": "James",
+    "surname": "Hall",
+    "email": "james.hall@university.edu",
+    "phone": "3105671234",
+    "address": "Austin, USA"
+  },
+  {
+    "user_id": 8,
+    "password": "grad_pass77",
+    "role": "prof",
+    "name": "Isabella",
+    "surname": "Lewis",
+    "email": "isabella.lewis@grad.edu",
+    "phone": "2654321888",
+    "address": "Denver, USA",
+    "mobile": "111222333"
+  },
+  {
+    "user_id": 9,
+    "password": "manager01!",
+    "role": "sec",
+    "name": "Ethan",
+    "surname": "Walker",
+    "email": "ethan.walker@business.com",
+    "phone": "4056789123",
+    "address": "Miami, USA"
+  },
+  {
+    "user_id": 10,
+    "password": "student_sky99",
+    "role": "student",
+    "name": "Charlotte",
+    "surname": "King",
+    "email": "charlotte.king@students.edu",
+    "phone": "6067894321",
+    "address": "San Diego, USA",
+    "mobile": "555666777"
+  }
+]

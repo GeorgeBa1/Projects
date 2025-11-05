@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentation Announcements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 text-white overflow-hidden">
+
+    <!-- Sidebar (Vertical Navigation) -->
+    <nav class="h-screen w-64 bg-purple-900 bg-opacity-90 text-white fixed top-0 left-0 flex flex-col py-6 px-4 shadow-lg">
+        <div class="mb-6 px-4">
+            <span class="text-3xl font-bold">Nemertes</span>
+        </div>
+        <a href="javascript:history.back()" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-5 rounded-lg shadow-lg transition-all duration-200 hover:-translate-y-1">
+            Go Back
+          </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <h1 class="text-3xl font-bold text-purple-400 mb-8">Presentation Announcements Feed</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <input type="date" id="fromDate" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" />
+            <input type="date" id="toDate" class="p-2 border border-gray-600 bg-gray-800 text-white rounded" />
+            <select id="formatSelect" class="p-2 border border-gray-600 bg-gray-800 text-white rounded">
+                <option value="json">JSON</option>
+                <option value="xml">XML</option>
+            </select>
+        </div>
+
+        <button id="loadFeedBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded mb-6">
+            Load Feed
+        </button>
+
+        <div id="feedContainer" class="bg-gray-800 text-sm text-purple-100 p-4 rounded-lg shadow overflow-auto max-h-[65vh] whitespace-pre-wrap"></div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/endpoint.js"></script>
+</body>
+</html>

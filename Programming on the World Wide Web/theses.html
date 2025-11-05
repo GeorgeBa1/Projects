@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create and View Theses</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 text-white">
+
+    <!-- Sidebar (Vertical Navigation) -->
+    <nav class="h-screen w-64 bg-purple-900 bg-opacity-90 text-white fixed top-0 left-0 flex flex-col py-6 px-4 shadow-lg">
+        <div class="mb-6 px-4">
+            <span class="text-3xl font-bold">Nemertes</span>
+        </div>
+        <div class="w-full flex flex-col space-y-4">
+            <a href="prof.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="theses.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-book"></i> Theses
+            </a>
+            <a href="stats.html" class="text-lg flex items-center gap-3 font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-chart-pie"></i> Stats
+            </a>
+            <a href="students.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-user-graduate"></i> Students
+            </a>
+            <a href="invitations.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-envelope"></i> Invitations
+            </a>
+            <a href="presentation_feed.html" class="text-lg font-semibold py-3 px-6 w-full rounded hover:bg-purple-700 transition">
+                <i class="fa-solid fa-bullhorn"></i> Announcements
+            </a>
+        </div>
+        <div class="mt-auto w-full px-4">
+            <a href="./php/logout.php" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 w-full rounded-lg transition flex items-center">
+                <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8 min-h-screen">
+        <header class="mb-12 text-center">
+            <h1 class="text-3xl font-bold text-purple-400">Create New Theses</h1>
+        </header>
+
+        <!-- Thesis Creation Form -->
+        <section class="max-w-3xl mx-auto bg-white bg-opacity-20 backdrop-blur-lg p-8 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
+            <h2 class="text-2xl font-semibold text-purple-300 mb-6">Create a New Thesis</h2>
+            <form id="thesisForm" onsubmit="event.preventDefault(); createThesis();" enctype="multipart/form-data" class="space-y-6">
+                
+                <!-- Title -->
+                <div>
+                    <label for="title" class="block text-lg font-semibold text-white mb-2">Thesis Title</label>
+                    <input type="text" id="title" name="title" required 
+                        class="w-full p-3 border border-gray-500 bg-gray-900 bg-opacity-30 text-white rounded-lg focus:ring-4 focus:ring-purple-500 transition-shadow" 
+                        placeholder="Enter thesis title">
+                </div>
+                
+                <!-- Abstract -->
+                <div>
+                    <label for="abstract" class="block text-lg font-semibold text-white mb-2">Abstract</label>
+                    <textarea id="abstract" name="abstract" required 
+                        class="w-full p-3 border border-gray-500 bg-gray-900 bg-opacity-30 text-white rounded-lg focus:ring-4 focus:ring-purple-500 transition-shadow" 
+                        rows="4" placeholder="Enter a brief description"></textarea>
+                </div>
+                
+                <!-- File Upload -->
+                <div>
+                    <label for="pdf" class="block text-lg font-semibold text-white mb-2">Upload PDF</label>
+                    <div class="relative border border-dashed border-4 border-purple-500 rounded-lg bg-gray-700 hover:bg-gray-600 bg-opacity-50 p-4">
+                        <input type="file" id="pdf" name="pdf" accept=".pdf" class="hidden" onchange="handleFileChange(event)">
+                        <label for="pdf" class="cursor-pointer bg-gray-600 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition">
+                            <i class="fa-solid fa-file-pdf"></i> Browse Files
+                        </label>
+                        <span id="fileName" class="ml-4 text-gray-300"></span>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" 
+                    class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 rounded-lg shadow-lg transform transition-transform hover:-translate-y-1 focus:ring-4 focus:ring-purple-500">
+                    <i class="fa-solid fa-square-plus"></i> Create Thesis
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/theses.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function handleFileChange(event) {
+            const fileInput = event.target;
+            const fileNameSpan = document.getElementById('fileName');
+            fileNameSpan.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+        }
+    </script>
+</body>
+</html>
